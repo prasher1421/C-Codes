@@ -34,7 +34,7 @@ int peek(){
     
 }
 
-void push(char val){
+void push(int val){
     
     Node * new_node = new Node();
     new_node -> data = val;
