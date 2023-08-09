@@ -109,20 +109,8 @@ void deleteAtEnd(){
             
             pre_ptr->next=start;
         }
-        
-        // while (ptr->next != NULL)
-        // {
-        //     pre_ptr = ptr;
-        //     ptr = ptr -> next;
-        // }
 
-        // if(ptr == start){
-        //     start = NULL;
-        // }
-        // else{
-        //     pre_ptr -> next = NULL;
-        // }
-        
+
         delete(ptr);
     }
 }

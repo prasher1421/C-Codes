@@ -1,1 +1,1 @@
-10
+// Queue implementation in C++
