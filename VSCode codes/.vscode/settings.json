@@ -3,6 +3,7 @@
     "files.associations": {
         "*.tcc": "cpp",
         "iostream": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "iomanip": "cpp"
     }
 }

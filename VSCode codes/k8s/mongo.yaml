@@ -1,0 +1,52 @@
+# deployment and servicein single file
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:7.0.6
+        ports:
+        - containerPort: 27017
+
+        # we need to specify environment variables
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+        # value will be found from secret
+          valueFrom:
+             secretKeyRef:
+              name: mongo-secret
+              key: mongo-user
+        - name: MONGO_INITDB_ROOT_PASSWORD
+        # value will be found from secret
+          valueFrom:
+             secretKeyRef:
+              name: mongo-secret
+              key: mongo-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  # for exterenal service
+  type: NodePort
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 27017
+      nodePort: 30100
